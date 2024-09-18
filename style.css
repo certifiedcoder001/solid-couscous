@@ -1,0 +1,379 @@
+/* Import Google Font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  /* Dark mode colors */
+  --text-color: #333;
+  --subheading-color: #666;
+  --placeholder-color: #999;
+  --primary-color: #fff;
+  --secondary-color: #e2e2e2;
+  --secondary-hover-color: #c0c0c0;
+
+  /* Lemon green theme */
+  --highlight-color: #d4e157; /* Lemon green */
+  --accent-color: #aeea00; /* Bright lemon green */
+}
+
+body {
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-family: "Poppins", sans-serif;
+}
+
+.header, .chat-list .message, .typing-form {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.header {
+  margin-top: 1vh;
+  padding: 0 1rem 1rem;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header_logo {
+  width: 130px;
+  height: 120px; 
+}
+
+.header1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem; /* Reduced margin */
+}
+
+.header2 {
+  margin-top: 1rem; /* Reduced margin */
+  font-size: 1.5rem;
+  line-height: 1.2rem; /* Adjusted line height */
+}
+
+.header .title {
+  font-weight: 800;
+  font-size: 2.5rem;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.header .subtitle {
+  font-size: 1.5rem;
+  color: var(--subheading-color);
+}
+
+.suggestion-list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 9.5vh;
+  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.suggestion-list .suggestion {
+  cursor: pointer;
+  padding: 1.25rem;
+  width: 222px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-radius: 0.75rem;
+  justify-content: space-between;
+  background: var(--secondary-color);
+  transition: 0.2s ease;
+}
+
+.suggestion-list .suggestion:hover {
+  background: var(--secondary-hover-color);
+}
+
+.suggestion-list .suggestion :where(.text, .icon) {
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.suggestion-list .suggestion .icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+  align-self: flex-end;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  color: var(--text-color);
+  background: var(--primary-color);
+}
+
+.chat-list {
+  padding: 2rem 1rem 12rem;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-color: #999 transparent;
+}
+
+.chat-list .message.incoming {
+  margin-top: 1.5rem;
+}
+
+.chat-list .message .message-content {
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.chat-list .message .text {
+  color: var(--text-color);
+  white-space: pre-wrap;
+}
+
+.chat-list .message.error .text {
+  color: #e55865;
+}
+
+.chat-list .message.loading .text {
+  display: none;
+}
+
+.chat-list .message .avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  align-self: flex-start;
+}
+
+.chat-list .message.loading .avatar {
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.chat-list .message .icon {
+  color: var(--text-color);
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  font-size: 1.25rem;
+  margin-left: 3.5rem;
+  visibility: hidden;
+}
+
+.chat-list .message .icon.hide {
+  visibility: hidden;
+}
+
+.chat-list .message:not(.loading, .error):hover .icon:not(.hide) {
+  visibility: visible;
+}
+
+.chat-list .message .icon:hover {
+  background: var(--secondary-hover-color);
+}
+
+.chat-list .message .loading-indicator {
+  display: none;
+  gap: 0.8rem;
+  width: 100%;
+  flex-direction: column;
+}
+
+.chat-list .message.loading .loading-indicator {
+  display: flex;
+}
+
+.chat-list .message .loading-indicator .loading-bar {
+  height: 11px;
+  width: 100%;
+  border-radius: 0.135rem;
+  background-position: -800px 0;
+  background: linear-gradient(to right, var(--highlight-color), var(--primary-color), var(--highlight-color));
+  animation: loading 3s linear infinite;
+}
+
+.chat-list .message .loading-indicator .loading-bar:last-child {
+  width: 70%;
+}
+
+@keyframes loading {
+  0% {
+    background-position: -800px 0;
+  }
+
+  100% {
+    background-position: 800px 0;
+  }
+}
+
+.typing-area {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 1rem;
+  background: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Base Styles */
+.typing-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.typing-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px; /* Set a max width for larger screens */
+  margin: 0 auto; /* Center the form horizontally */
+}
+
+.typing-form .input-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.typing-form .typing-input {
+  height: 50px;
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--text-color);
+  padding: 0 3rem; /* Adjust padding for send button space */
+  border-radius: 100px;
+  background: var(--secondary-color);
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+.typing-form .typing-input:focus {
+  background: var(--secondary-hover-color);
+}
+
+.typing-form .typing-input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.typing-form .typing-input:focus::placeholder {
+  color: var(--highlight-color);
+}
+
+.typing-form #send-message-button {
+  position: absolute;
+  right: 1rem; /* Adjust position from the right */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem; /* Adjust font size */
+  color: var(--highlight-color);
+  background: var(--primary-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%; /* Make it circular */
+  width: 40px; /* Set width */
+  height: 40px; /* Set height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-form #send-message-button:hover {
+  background: var(--secondary-hover-color);
+}
+
+.typing-area .disclaimer-text {
+  font-size: 0.8rem;
+  color: var(--subheading-color);
+  margin-top: 0.5rem; /* Adjust margin to position the disclaimer text below the input */
+  text-align: center; /* Center-align the disclaimer text */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 600px) {
+  .header .title {
+    font-size: 1.5rem;
+  }
+
+  .header .subtitle {
+    font-size: 1rem;
+  }
+
+  .suggestion-list {
+    gap: 0.75rem;
+  }
+
+  .suggestion-list .suggestion {
+    width: 180px;
+    padding: 1rem;
+  }
+
+  .typing-area {
+    padding: 0.5rem; /* Add padding for mobile */
+  }
+
+  .typing-form {
+    width: 100%;
+    max-width: none; /* Remove max-width for mobile screens */
+    flex-direction: column;
+    align-items: stretch; /* Make the form full width */
+  }
+
+  .typing-form .input-wrapper {
+    width: 100%;
+    position: relative; /* Ensure correct positioning */
+  }
+
+  .typing-form .typing-input {
+    width: 100%; /* Make input full width */
+    margin-right: 0; /* Remove margin-right */
+  }
+
+  .typing-form #send-message-button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 1rem; /* Adjust right position */
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .chat-list .message .text {
+    font-size: 0.9rem; /* Adjust text size for smaller screens */
+  }
+}
